@@ -1,0 +1,24 @@
+.list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.listitem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 100%;
+    height: 150px;
+    margin-bottom: 10px;
+
+    &:last-child {
+        margin: 0;
+    }
+
+    &__title {
+        color: #000;
+        filter: invert(1);
+        mix-blend-mode: difference;
+    }
+}

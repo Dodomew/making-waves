@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import List from '../../components/List/List';
 
 // https://stackoverflow.com/questions/48892435/making-an-api-call-in-react
 
@@ -42,22 +43,17 @@ class App extends React.Component {
             return <h1>An error occured: {errorMessage}</h1>
         }
 
-        const items = data.map((item, key) =>
-            <li key={key} className="listitem">
-                {key}
-            </li>
-        );
-
         return(
-            <ul className="list">
-                {items}
-            </ul>
+            <List data={data}/>
         )
     };
 
     render() {
         return(
             <div className="main">
+                <h2 className="header">
+                    Colors
+                </h2>
                 {this.renderData()}
             </div>
         );
