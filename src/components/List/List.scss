@@ -20,9 +20,11 @@
     }
 
     &__title {
-        color: #000;
-        filter: invert(1);
-        mix-blend-mode: difference;
+        background: inherit;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        filter: invert(1) grayscale(1) contrast(12);
     }
 }
 

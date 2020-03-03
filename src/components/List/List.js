@@ -36,7 +36,7 @@ const List = (props) => {
     };
 
     const handleClick = (pageNumber) => {
-        props.requestPage('https://reqres.in/api/example?per_page=8', pageNumber);
+        props.requestPage(pageNumber);
     }
 
     return (

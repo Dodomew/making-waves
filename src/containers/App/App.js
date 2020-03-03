@@ -15,12 +15,12 @@ class App extends React.Component {
         this.requestPage = this.requestPage.bind(this);
     }
 
-    async componentDidMount() {
-        this.requestPage('https://reqres.in/api/example?per_page=8')
+    componentDidMount() {
+        this.requestPage();
     }
 
-    async requestPage(url, pageNumber) {
-        console.log('requestPage')
+    requestPage = async (pageNumber) => {
+        let url = 'https://reqres.in/api/example?per_page=8';
 
         if(pageNumber) {
             url += '&page=' + pageNumber
@@ -45,13 +45,15 @@ class App extends React.Component {
                 isLoading: false
             });
         }
-    }
+    };
+
+
 
     renderData = () => {
         const { isLoading, data, errorMessage } = this.state;
 
         if(isLoading) {
-            return <h1>App is loading...</h1>
+            return <div className="loader"/>
         }
 
         if(errorMessage) {
