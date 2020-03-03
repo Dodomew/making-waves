@@ -2,8 +2,6 @@ import React from 'react';
 import './App.scss';
 import List from '../../components/List/List';
 
-// https://stackoverflow.com/questions/48892435/making-an-api-call-in-react
-
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -12,15 +10,29 @@ class App extends React.Component {
             data: {},
             errorMessage: null
         };
+
+        // This binding is necessary to make `this` work in the callback
+        this.requestPage = this.requestPage.bind(this);
     }
 
     async componentDidMount() {
-        console.log('componentDidMount')
-        try {
-            const response = await fetch('https://reqres.in/api/example?per_page=8');
-            const data = await response.json();
+        this.requestPage('https://reqres.in/api/example?per_page=8')
+    }
 
-            console.log(data)
+    async requestPage(url, pageNumber) {
+        console.log('requestPage')
+
+        if(pageNumber) {
+            url += '&page=' + pageNumber
+        }
+
+        this.setState({
+            isLoading: true
+        });
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
 
             this.setState({
                 data: data,
@@ -47,7 +59,7 @@ class App extends React.Component {
         }
 
         return(
-            <List data={data}/>
+            <List data={data} requestPage={this.requestPage}/>
         )
     };
 

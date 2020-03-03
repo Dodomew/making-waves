@@ -1,0 +1,18 @@
+.pagination {
+    &__list {
+        display: flex;
+        margin: 0 auto 30px;
+        padding: 0;
+        list-style-type: none;
+        justify-content: center;
+    }
+
+    &__listitem {
+        padding: 10px;
+        margin: 0 5px;
+
+        &.is-active {
+            background-color: red;
+        }
+    }
+}
