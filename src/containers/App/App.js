@@ -8,8 +8,8 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading: false,
-            data: [],
+            isLoading: true,
+            data: {},
             errorMessage: null
         };
     }
@@ -19,8 +19,11 @@ class App extends React.Component {
         try {
             const response = await fetch('https://reqres.in/api/example?per_page=8');
             const data = await response.json();
+
+            console.log(data)
+
             this.setState({
-                data: data.data,
+                data: data,
                 isLoading: false
             });
 
