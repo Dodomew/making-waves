@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.scss';
 import List from '../../components/List/List';
+import Pagination from "../../components/List/Pagination";
 
 class App extends React.Component {
     constructor(props) {
@@ -61,7 +62,10 @@ class App extends React.Component {
         }
 
         return(
-            <List data={data} requestPage={this.requestPage}/>
+            <div className="component">
+                <List data={data}/>
+                <Pagination data={data} requestPage={this.requestPage}/>
+            </div>
         )
     };
 

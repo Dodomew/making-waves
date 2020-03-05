@@ -1,3 +1,14 @@
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
 .list {
     margin: 0 auto 30px;
     padding: 0;
@@ -14,6 +25,21 @@
     flex: 1 0 100%;
     height: 150px;
     margin-bottom: 10px;
+    border-radius: 5px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.2s, transform 0.2s;
+
+    @for $i from 1 through 8 {
+        &:nth-child(#{$i}) {
+            transition-delay: 0.033s * $i;
+        }
+    }
+
+    .anim-is-ready & {
+        transform: translateY(0px);
+        opacity: 1;
+    }
 
     &:last-child {
         margin: 0;
