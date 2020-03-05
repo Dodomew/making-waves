@@ -27,10 +27,6 @@ class App extends React.Component {
             url += '&page=' + pageNumber
         }
 
-        this.setState({
-            isLoading: true
-        });
-
         try {
             const response = await fetch(url);
             const data = await response.json();
@@ -38,6 +34,11 @@ class App extends React.Component {
             this.setState({
                 data: data,
                 isLoading: false
+            });
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
 
         } catch (error) {
@@ -53,17 +54,13 @@ class App extends React.Component {
     renderData = () => {
         const { isLoading, data, errorMessage } = this.state;
 
-        if(isLoading) {
-            return <div className="loader"/>
-        }
-
         if(errorMessage) {
             return <h1>An error occured: {errorMessage}</h1>
         }
 
         return(
             <div className="component">
-                <List data={data}/>
+                <List response={data} isLoading={isLoading}/>
                 <Pagination data={data} requestPage={this.requestPage}/>
             </div>
         )

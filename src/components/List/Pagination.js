@@ -2,9 +2,10 @@ import React from 'react';
 import './Pagination.scss';
 
 const Pagination = (props) => {
+    const totalAmountOfPages = props.data.total_pages || 0;
+    const currentPage = props.data.page || 1;
+
     const createPagination = () => {
-        const totalAmountOfPages = props.data.total_pages || 0;
-        const currentPage = props.data.page || 1;
         const pages = [];
 
         for (let i = 0; i < totalAmountOfPages; i++) {
@@ -22,7 +23,9 @@ const Pagination = (props) => {
     };
 
     const handleClick = (pageNumber) => {
-        props.requestPage(pageNumber);
+        if(currentPage !== pageNumber) {
+            props.requestPage(pageNumber);
+        }
     };
 
     return (
